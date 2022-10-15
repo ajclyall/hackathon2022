@@ -39,7 +39,7 @@ class GUI(tk.Frame):
         self.canvas.pack(pady=100)
         #self.submit_button.pack()
 
-        self.write_text('Hello world!\nThe end is nigh.')
+        #self.write_text('Hello world!\nThe end is nigh.')
 
     def get_cursor_canvaspos(self):
         return (self.cursorpos[0]*self.characterwidth,self.cursorpos[1]*self.lineheight)
@@ -50,13 +50,6 @@ class GUI(tk.Frame):
         else:
             self.canvas.create_text(*self.get_cursor_canvaspos(), text=char, fill='white', font=self.font, anchor=tk.NW)
             self.cursorpos = (self.cursorpos[0]+1, self.cursorpos[1])
-
-    def key_pressed(self, event):
-        #print('You pressed a key', event.keycode)
-        if event.keycode == 13:
-            self.draw_character('\n')
-        else:
-            self.draw_character(event.char)
 
     def write_text(self,text):
         for char in text:
@@ -69,11 +62,4 @@ class GUI(tk.Frame):
         #self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
         self.label.configure(image=self.image)
 
-def test(event):
-    print('test')
 
-root = tk.Tk()
-root.config(bg='black')
-app = GUI(master=root)
-root.bind('<Key>',app.key_pressed)
-app.mainloop()

@@ -8,6 +8,8 @@ class State:
         self.image = None
         self.cutscene = None
 
+        self.state_change_ready = False
+
     def set_prompt(self, prompt):
         self.prompt = prompt
 
@@ -18,19 +20,20 @@ class State:
         self.image = image
 
 
-
-    def do_state(self):
+    def do_state(self, app):
         print('\nDoing state...', end='')
         print('in room ',self.room.name)
 
         if not self.prompt is None:
-            self.story.set_next_state(self.prompt.get_state_from_question())
+            self.story.set_next_state(self.prompt.get_state_from_question(app))
 
         if not self.cutscene is None:
-            self.story.set_next_state(self.cutscene.do_cutscene())
+            self.story.set_next_state(self.cutscene.do_cutscene(app))
 
         if not self.image is None:
-            self.story.set_next_state(self.image.do_image())
+            self.story.set_next_state(self.image.do_image(app))
+
+        self.state_change_ready = True
 
 class Prompt:
     def __init__(self, question, choices, states):
@@ -38,10 +41,11 @@ class Prompt:
         self.choices = choices
         self.states = states
 
-    def get_state_from_question(self):
-        print('Q: '+self.question)
-        print('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)]))
+    def get_state_from_question(self, app):
+        app.write_text('Q: '+self.question+'\n')
+        app.write_text('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)])+'\n')
         answer = int(input('Choose a number:'))
+        print('This state is ready to move on :(')
         return self.states[answer]
 
 class Image:
@@ -49,7 +53,7 @@ class Image:
         self.image_prompt = image_prompt
         self.next_state = next_state
 
-    def do_image(self):
+    def do_image(self, app):
         print('Fetching an image with the prompt',self.image_prompt)
         print('Displaying image')
         print('Moving to next state')
@@ -60,7 +64,7 @@ class CutScene:
         self.textstory = textstory
         self.next_state = next_state
 
-    def do_cutscene(self):
+    def do_cutscene(self, app):
         print(self.textstory)
         return self.next_state
 
@@ -73,9 +77,16 @@ class Room:
 class Story:
     def __init__(self):
         self.next_state = None
+        self.cur_state = None
 
     def get_next_state(self):
         return self.next_state
 
     def set_next_state(self, state):
         self.next_state = state
+
+    def get_cur_state(self):
+        return self.cur_state
+
+    def set_cur_state(self, state):
+        self.cur_state = state
