@@ -17,7 +17,7 @@ def townMan():
     return sequence, max_length
 
 #Baker (town)
-def backer():
+def baker():
     max_length = 50
     sequence = ("Good afternoon " +name+ " what are you looking for today?\n"
                                          "I've got bread, muffins"

@@ -1,3 +1,4 @@
+import re
 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from ConvStarters import *
@@ -18,24 +19,35 @@ def produceDialog(func):
     text = tokenizer.decode(outputs[0], skip_special_tokens=True,)
     print(len(text))
 
-
-    points = ['!', '?', '.']
+    points = ['!', '?', '.', '"']
     text_filter = text.replace("  ", " ")
-    textArray = text_filter.split('\n')
+    text_split = text_filter.split('\n')
+
+
+    finalText = []
+
+    for i in range(len(text_split)):
+        if len(text_split[i]) > 1:
+            finalText.append(text_split[i])
+
     filtered = False
 
-    while(filtered == False):
+    while (filtered == False):
 
-        if(textArray[-1].rstrip()[-1] not in points):
-            textArray = textArray[0:-1]
+        str = finalText[-1].rstrip()
+        print("Loop "+str + " " + str[-1])
+
+        if (str[-1] not in points):
+            str_sp = re.findall('.*?[.!\?]', str)
+            finalText[-1] = " ".join(str_sp)
         else:
             filtered = True
 
-    for i in range(len(textArray)):
-        print(textArray[i])
-
+    for i in range(len(finalText)):
+        print(finalText[i])
 
     #Try to set up a function that gets rid of random charecters
-
     return
+
+produceDialog(baker())
 
