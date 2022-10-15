@@ -1,4 +1,5 @@
 import csv
+import
 
 class State:
     def __init__(self, story, id, content, next_state_ids):
@@ -6,7 +7,7 @@ class State:
         self.id = id
 
     def prep_state(self):
-        #smth smth wipe screen
+
         return
 
 class Prompt(State):
@@ -25,6 +26,7 @@ class Prompt(State):
             return True
         else:
             return False
+
 
     def finish_state(self, app):
         app.is_capturing = False
