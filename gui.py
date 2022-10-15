@@ -1,7 +1,4 @@
 import tkinter as tk
-#from PIL import ImageTk, Image
-from random import randint
-
 
 class GUI(tk.Frame):
     
@@ -72,4 +69,10 @@ class GUI(tk.Frame):
         #self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
         #self.label.configure(image=self.image)
 
+"""
+root = tk.Tk()
+root.config(bg='black')
+app = GUI(master=root)
+app.mainloop()
+"""
 
