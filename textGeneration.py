@@ -9,10 +9,10 @@ model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 
 
-def produceDialog(func):
+def produceDialog(content):
 
-    sequence = func[0]
-    max_length = func[1]
+    sequence = content[1]
+    max_length = int(content[0])
 
     inputs = tokenizer.encode(sequence, return_tensors='pt')
     outputs = model.generate(inputs, max_length, do_sample=True, temperature=0.3,top_p=0.9, top_k=50, no_repeat_ngram_size=2)
@@ -43,11 +43,8 @@ def produceDialog(func):
         else:
             filtered = True
 
-    for i in range(len(finalText)):
-        print(finalText[i])
-
-    #Try to set up a function that gets rid of random charecters
-    return
+    returnText = "".join(finalText)
+    return returnText
 
 produceDialog(townMan())
 

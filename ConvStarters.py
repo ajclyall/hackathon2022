@@ -8,12 +8,8 @@ name = "emma" #user input
 #town
 def townMan():
     max_length = 150
-    sequence = ("Hi my name is James \n"
-                "I know you inherited the castle \n"
-                "Have you heard the infinite horror stories about the bloody viscount \n"
-                "He used to live in the castle on the hill, \n"
-                "and he massacred hundreds of towns people. \n"
-                )
+    sequence = "Hi my name is James \n I know you inherited the castle \n Have you heard the infinite horror stories about the bloody viscount \n He used to live in the castle on the hill, \n and he massacred hundreds of towns people. \n"
+
     return sequence, max_length
 
 #Baker (town)
