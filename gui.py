@@ -1,5 +1,7 @@
+from imp import acquire_lock
 import tkinter as tk
 from random import randint
+from threading import Lock
 
 
 # from PIL.ImageTk import PhotoImage
@@ -29,6 +31,10 @@ class GUI(tk.Frame):
         self.font = ('Courier','15','bold')
 
 
+
+        self.image_margin = 0
+
+
         # Inputing text stuff
         self.input_list = []
         self.is_capturing = False
@@ -36,7 +42,7 @@ class GUI(tk.Frame):
         self.canvas.pack(pady=200)
 
     def get_cursor_canvaspos(self):
-        return (self.cursorpos[0]*self.characterwidth+self.margin,self.cursorpos[1]*self.lineheight)
+        return (self.cursorpos[0]*self.characterwidth+self.margin+self.image_margin,self.cursorpos[1]*self.lineheight)
 
     def draw_character(self, char):
         if char == '\n':
@@ -44,6 +50,7 @@ class GUI(tk.Frame):
         else:
             self.canvas.create_text(*self.get_cursor_canvaspos(), text=char, fill='white', font=self.font, anchor=tk.NW)
             self.cursorpos = (self.cursorpos[0]+1, self.cursorpos[1])
+
 
     def write_text(self,text):
         for char in text:
@@ -69,7 +76,8 @@ class GUI(tk.Frame):
         self.input_list.append(char)
 
     def clear_canvas(self):
-        self.canvas.clear() # NOT RIGHT
+        self.canvas.delete("all")
+        self.cursorpos = (0,0)
 
     def draw_image(self):
 
