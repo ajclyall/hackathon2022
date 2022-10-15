@@ -2,6 +2,6 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 0,CUTSCENE,TRUE,Test,1
 1,PROMPT,FALSE,Begin Game?+Yes+No,0+2
 2,CUTSCENE,TRUE,THE END THANK YOU FOR PLAYING THE GAME,2
-3,CUTSCENE,TRUE,"150 + ""Hi my name is James \n I know you inherited the castle \n Have you heard the infinite horror stories about the bloody viscount \n He used to live in the castle on the hill, \n and he massacred hundreds of towns people. \n""",
-4,CUTSCENE,TRUE,"50 + ""Good afternoon "" +name+ "" what are you looking for today?\n I've got bread, muffins"" ",
-5,CUTSCENE,TRUE,"100 + ""Hello ""+ name + "", I am George \n I am calling you to let you know you have an inheritance waiting for you in the south of France. \n If you have any questions""",
+3,CUTSCENE,TRUE,"150 : ""Hi my name is James \n I know you inherited the castle \n Have you heard the infinite horror stories about the bloody viscount \n He used to live in the castle on the hill, \n and he massacred hundreds of towns people. \n""",
+4,CUTSCENE,TRUE,"50 : ""Good afternoon "" +name+ "" what are you looking for today?\n I've got bread, muffins"" ",
+5,CUTSCENE,TRUE,"100 : ""Hello ""+ name + "", I am George \n I am calling you to let you know you have an inheritance waiting for you in the south of France. \n If you have any questions""",
