@@ -52,6 +52,10 @@ class Image(State):
         new_state = Image(story, id, content, next_state_ids)
         return new_state
 
+    def prep_state(self):
+        #smth smth generate image
+        return
+
 class CutScene(State):
     def __init__(self, story, id, content, next_state_ids):
         super().__init__(story, id, content, next_state_ids)
