@@ -1,8 +1,4 @@
 import tkinter as tk
-from PIL import ImageTk, Image
-#from ai import generate_image
-#from django.utils.text import slugify
-
 
 class GUI(tk.Frame):
     def __init__(self, master=None):
@@ -37,8 +33,10 @@ class GUI(tk.Frame):
         #self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
         self.label.configure(image=self.image)
 
-
+"""
 root = tk.Tk()
 root.config(bg='black')
 app = GUI(master=root)
 app.mainloop()
+"""
+
