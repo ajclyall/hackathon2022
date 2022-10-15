@@ -19,14 +19,15 @@ def townMan():
 #Baker (town)
 def backer():
     max_length = 50
-    sequence = (
+    sequence = ("Good afternoon " +name+ " what are you looking for today?\n"
+                                         "I've got bread, muffins"
                 )
     return sequence, max_length
 
 #big city
 def caller():
     max_length = 100
-    sequence = ("Hello "+ name + ", I am Georege \n"
+    sequence = ("Hello "+ name + ", I am George \n"
                 "I am calling you to let you know you have an inheritance waiting for you in the south of France. \n"
                 "If you have any questions"
                 )
