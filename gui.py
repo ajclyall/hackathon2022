@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-import time
+from random import randint
 #from ai import generate_image
 #from django.utils.text import slugify
 
@@ -58,7 +58,14 @@ class GUI(tk.Frame):
     def write_text(self,text):
         for char in text:
             self.draw_character(char)
-           
+
+    def delay_write_text(self, text):
+        self.delay_draw_chars(list(text))
+
+    def delay_draw_chars(self, list_chars):
+        if len(list_chars) != 0:
+            self.draw_character(list_chars.pop(0))
+            self.after(randint(5,30), self.delay_draw_chars, list_chars)
 
     def start_inputing(self):
         self.input_list = []
