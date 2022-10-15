@@ -32,7 +32,6 @@ class Prompt(State):
         app.is_capturing = False
         answer = int(app.get_finished_input())
         next_state = self.story.find_state(self.next_state_ids[answer])
-        self.story.set_next_state(next_state)
         self.state_change_ready = True
 
     def from_csv(story, id, content, next_state_ids):
@@ -62,15 +61,14 @@ class CutScene(State):
         app.delay_write_text(self.textstory)
         app.write_text('\nPress any key to continue...\n')
 
-    def is_state_done(self, app, keyevent):
+    def is_state_done(self, keyevent):
         if keyevent.char != '':
             return True
         else:
             return False
 
-    def finish_state(self,app):
+    def finish_state(self):
         next_state = self.story.find_state(self.next_state_ids[0])
-        self.story.set_next_state(next_state)
         self.state_change_ready = True
 
     def from_csv(story, id, content, next_state_ids):
@@ -82,12 +80,6 @@ class Story:
         self.next_state = None
         self.cur_state = None
         self.states = []
-
-    def get_next_state(self):
-        return self.next_state
-
-    def set_next_state(self, state):
-        self.next_state = state
 
     def get_cur_state(self):
         return self.cur_state
