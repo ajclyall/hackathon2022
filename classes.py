@@ -49,7 +49,7 @@ class Image(State):
 
     def do_state(self, app):
         app.clear_canvas()
-        app.draw_image()
+        app.draw_image(self)
         app.image_margin = 515
         
         app.write_text('Some text like')

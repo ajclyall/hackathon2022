@@ -80,15 +80,10 @@ class GUI(tk.Frame):
         self.cursorpos = (0,0)
 
     def draw_image(self, image_state):
-
-        prompt = image_state.content
         file_name = image_state.id
         img = tk.PhotoImage(file=f'images/{file_name}.png')
         self.img = img ## SHEAR WITCHCRAFT
         self.canvas.create_image(self.get_cursor_canvaspos(), image=img, anchor=tk.NW)
 
-
-        # self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
-        # self.label.configure(image=self.image)
 
 
