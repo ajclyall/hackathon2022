@@ -1,6 +1,9 @@
 import csv
 from textGeneration import *
 
+import ai
+
+
 class State:
     def __init__(self, story, id, content, next_state_ids):
         self.story = story
@@ -116,6 +119,7 @@ class Story:
                     new_state = CutScene.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
                 elif (state["TYPE"]=="IMAGE"):
                     new_state = Image.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                    ai.generate_image(new_state)
                 elif (state["TYPE"]=="PROMPT"):
                     new_state = Prompt.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
 
