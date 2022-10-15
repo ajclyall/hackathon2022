@@ -28,10 +28,15 @@ def update_state():
     
 
 def key_pressed(event):
-    if event.keycode == 13:
-        app.draw_character('\n')
-    else:
-        app.draw_character(event.char)
+    if app.is_capturing:
+        print('Key pressed and capturing')
+        if event.keycode == 13:
+            app.is_caputing = False
+            main_story.get_cur_state().finish_state(app)
+        else:
+            app.draw_character(event.char)
+            app.store_char(event.char)
+    
 
     update_state()
 

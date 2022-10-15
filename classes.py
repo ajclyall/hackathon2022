@@ -25,7 +25,7 @@ class State:
         print('in room ',self.room.name)
 
         if not self.prompt is None:
-            self.story.set_next_state(self.prompt.get_state_from_question(app))
+            self.prompt.do_prompt(app)
 
         if not self.cutscene is None:
             self.story.set_next_state(self.cutscene.do_cutscene(app))
@@ -33,7 +33,17 @@ class State:
         if not self.image is None:
             self.story.set_next_state(self.image.do_image(app))
 
-        self.state_change_ready = True
+        if not app.is_capturing:
+            self.state_change_ready = True
+
+    def finish_state(self, app):
+        if not self.prompt is None:
+            next_state = self.prompt.finish_prompt(app)
+            print(next_state)
+            print('YOU DIDNT EVEN REACH THIS POINT')
+            self.story.set_next_state(next_state)
+            self.state_change_ready = True
+
 
 class Prompt:
     def __init__(self, question, choices, states):
@@ -41,11 +51,16 @@ class Prompt:
         self.choices = choices
         self.states = states
 
-    def get_state_from_question(self, app):
+    def do_prompt(self, app):
         app.write_text('Q: '+self.question+'\n')
         app.write_text('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)])+'\n')
-        answer = int(input('Choose a number:'))
-        print('This state is ready to move on :(')
+        app.start_inputing()
+        #answer = int(app.input_text()) ## INPUT VALIDATION NEEDED
+        #print('This state is ready to move on :(')
+        #return self.states[answer]
+
+    def finish_prompt(self, app):
+        answer = int(app.get_finished_input())
         return self.states[answer]
 
 class Image:
@@ -65,7 +80,7 @@ class CutScene:
         self.next_state = next_state
 
     def do_cutscene(self, app):
-        print(self.textstory)
+        app.write_text(self.textstory)
         return self.next_state
 
 class Room:

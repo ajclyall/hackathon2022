@@ -33,6 +33,9 @@ class GUI(tk.Frame):
         self.characterwidth = self.canvaswidth//self.screen_width
         self.font = ('Courier','15','bold')
 
+        # Inputing text stuff
+        self.input_list = []
+        self.is_capturing = False
 
         #self.entry.pack()
         #self.label.pack()
@@ -50,11 +53,23 @@ class GUI(tk.Frame):
         else:
             self.canvas.create_text(*self.get_cursor_canvaspos(), text=char, fill='white', font=self.font, anchor=tk.NW)
             self.cursorpos = (self.cursorpos[0]+1, self.cursorpos[1])
+        #time.sleep(0.05)
 
     def write_text(self,text):
         for char in text:
             self.draw_character(char)
-            #time.sleep(0.05)
+           
+
+    def start_inputing(self):
+        self.input_list = []
+        self.is_capturing = True
+
+    def get_finished_input(self):
+        self.is_capturing = False ## WARNING
+        return ''.join(self.input_list)
+
+    def store_char(self, char):
+        self.input_list.append(char)
 
     def set_image(self):
         prompt = self.prompt_var.get()
