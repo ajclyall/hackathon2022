@@ -1,4 +1,5 @@
 import csv
+from textGeneration import *
 
 class State:
     def __init__(self, story, id, content, next_state_ids):
@@ -68,7 +69,7 @@ class Image(State):
 class CutScene(State):
     def __init__(self, story, id, content, next_state_ids):
         super().__init__(story, id, content, next_state_ids)
-        self.textstory = content[0]
+        self.textstory = ""
 
     def do_state(self, app):
         app.delay_write_text(self.textstory)
@@ -88,6 +89,9 @@ class CutScene(State):
     def from_csv(story, id, content, next_state_ids):
         new_state = CutScene(story, id, content, next_state_ids)
         return new_state
+
+    def prep_state(self):
+        self.textstory = produceDialog(content=self.content)
 
 class Story:
     def __init__(self):
