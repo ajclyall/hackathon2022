@@ -1,12 +1,12 @@
 import csv
 
 class State:
-    def __init__(self, no, content, wipe, story, room):
+    def __init__(self, no, content, wipe, story, room, next_state_no):
+        self.story = story
         self.no = no #scene no
         self.content = content #scene content name
         self.wipe = wipe #wipe the contents of the last scene
-
-        self.story = story
+        self.next_state = self.story.get_state(next_state_no)   #next state no
         self.room = room
 
         self.prompt = None
@@ -36,21 +36,18 @@ class State:
             self.story.set_next_state(self.image.do_image())
 
 class Prompt(State):
-    def __init__(self, question, choices, states):
-        self.question = question
-        self.choices = choices
+    def __init__(self, states):
+        self.choices = self.content
         self.states = states
 
     def get_state_from_question(self):
-        print('Q: '+self.question)
         print('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)]))
         answer = int(input('Choose a number:'))
         return self.states[answer]
 
 class Image(State):
-    def __init__(self, image_prompt, next_state):
-        self.image_prompt = image_prompt
-        self.next_state = next_state
+    def __init__(self):
+        self.image_prompt = self.content
 
     def do_image(self):
         print('Fetching an image with the prompt',self.image_prompt)
@@ -59,9 +56,9 @@ class Image(State):
         return self.next_state
 
 class CutScene(State):
-    def __init__(self, textstory, next_state):
-        self.textstory = textstory
-        self.next_state = next_state
+    def __init__(self):
+        self.textstory = str(self.content)
+
 
     def do_cutscene(self):
         print(self.textstory)
@@ -103,7 +100,12 @@ class Story:
                                     wipe = (scene["Wipe"]=="TRUE"),
                                     story = self)
                 
-                self.states.append(scene)
+                self.states.append(newState)
+
+    def get_state(self, state_no):
+        for state in self.states:
+            if int(state["SceneNo"]) == state_no:
+                return state
 
     def get_next_state(self):
         return self.next_state
