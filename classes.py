@@ -1,6 +1,10 @@
 
 class State:
-    def __init__(self, story, room):
+    def __init__(self, no, content, wipe, story, room):
+        self.no = no #scene no
+        self.content = content #scene content name
+        self.wipe = wipe #wipe the contents of the last scene
+
         self.story = story
         self.room = room
 
@@ -8,14 +12,14 @@ class State:
         self.image = None
         self.cutscene = None
 
-    def set_prompt(self, prompt):
-        self.prompt = prompt
+    def set_prompt(self, content):
+        self.prompt = content
 
-    def set_cutscene(self, cutscene):
-        self.cutscene = cutscene
+    def set_cutscene(self, content):
+        self.cutscene = content
 
-    def set_image(self, image):
-        self.image = image
+    def set_image(self, content):
+        self.image = content
 
 
 
@@ -32,7 +36,7 @@ class State:
         if not self.image is None:
             self.story.set_next_state(self.image.do_image())
 
-class Prompt:
+class Prompt(State):
     def __init__(self, question, choices, states):
         self.question = question
         self.choices = choices
@@ -44,7 +48,7 @@ class Prompt:
         answer = int(input('Choose a number:'))
         return self.states[answer]
 
-class Image:
+class Image(State):
     def __init__(self, image_prompt, next_state):
         self.image_prompt = image_prompt
         self.next_state = next_state
@@ -55,7 +59,7 @@ class Image:
         print('Moving to next state')
         return self.next_state
 
-class CutScene:
+class CutScene(State):
     def __init__(self, textstory, next_state):
         self.textstory = textstory
         self.next_state = next_state
@@ -73,6 +77,12 @@ class Room:
 class Story:
     def __init__(self):
         self.next_state = None
+        self.states = {"SceneNo":[],	"Type":[],	"Wipe":[],	"Content":[],}
+
+    def get_states():
+        for():
+            #smthsmth read file
+
 
     def get_next_state(self):
         return self.next_state
