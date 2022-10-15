@@ -1,3 +1,4 @@
+import csv
 
 class State:
     def __init__(self, no, content, wipe, story, room):
@@ -20,8 +21,6 @@ class State:
 
     def set_image(self, content):
         self.image = content
-
-
 
     def do_state(self):
         print('\nDoing state...', end='')
@@ -77,12 +76,34 @@ class Room:
 class Story:
     def __init__(self):
         self.next_state = None
-        self.states = {"SceneNo":[],	"Type":[],	"Wipe":[],	"Content":[],}
+        self.states = []
 
-    def get_states():
-        for():
-            #smthsmth read file
-
+    def get_states(self):
+        with open('scenes.csv') as scenes_file:
+            scenes = csv.DictReader(scenes_file)
+            for scene in scenes:
+                if (scene["Type"]=="CutScene"):
+                    newState = CutScene(no = scene["SceneNo"],
+                                    content = [scene["Content0"],scene["Content1"],scene["Content2"],scene["Content3"]],
+                                    wipe = (scene["Wipe"]=="TRUE"),
+                                    story = self)
+                elif (scene["Type"]=="Image"):
+                     newState = Image(no = scene["SceneNo"],
+                                    content = [scene["Content0"],scene["Content1"],scene["Content2"],scene["Content3"]],
+                                    wipe = (scene["Wipe"]=="TRUE"),
+                                    story = self)
+                elif (scene["Type"]=="Prompt"):
+                    newState = Prompt(no = scene["SceneNo"],
+                                    content = [scene["Content0"],scene["Content1"],scene["Content2"],scene["Content3"]],
+                                    wipe = (scene["Wipe"]=="TRUE"),
+                                    story = self)
+                else:
+                    newState = State(no = scene["SceneNo"],
+                                    content = [scene["Content0"],scene["Content1"],scene["Content2"],scene["Content3"]],
+                                    wipe = (scene["Wipe"]=="TRUE"),
+                                    story = self)
+                
+                self.states.append(scene)
 
     def get_next_state(self):
         return self.next_state
