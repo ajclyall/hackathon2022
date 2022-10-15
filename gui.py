@@ -74,9 +74,10 @@ class GUI(tk.Frame):
     def draw_image(self):
 
         prompt = "a little goblin man"
-       # generate_image(prompt)
-        img = tk.PhotoImage(file='image.ppm')
-        self.canvas.create_image(*self.get_cursor_canvaspos(), image=img, anchor=tk.NW)
+        #generate_image(prompt)
+        img = tk.PhotoImage(file='image.png')
+        self.img = img ## SHEAR WITCHCRAFT
+        self.canvas.create_image(self.get_cursor_canvaspos(), image=img, anchor=tk.NW)
 
 
         # self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
