@@ -80,7 +80,7 @@ class CutScene:
         self.next_state = next_state
 
     def do_cutscene(self, app):
-        app.write_text(self.textstory)
+        app.delay_write_text(self.textstory)
         return self.next_state
 
 class Room:
