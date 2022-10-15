@@ -5,11 +5,9 @@ class State:
         self.story = story
         self.id = id
 
-        self.content = content
-        self.next_state_ids = next_state_ids
-
-        self.state_change_ready = False
-
+    def prep_state(self):
+        #smth smth wipe screen
+        return
 
 class Prompt(State):
     def __init__(self, story, id, content, next_state_ids):
@@ -108,3 +106,5 @@ class Story:
         for state in self.states:
             if state.id == id:
                 return state
+
+

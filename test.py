@@ -1,10 +1,7 @@
-import csv
-states = []
+import csv, classes
 
-with open('scenes.csv') as scenes_file:
-    scenes = csv.DictReader(scenes_file)
-    for scene in scenes:
-        states.append(scene)
+story = classes.Story()
+story.get_states()
 
-for state in states:
-    print(state)
+for scene in story.story:
+    scene.state_data()
