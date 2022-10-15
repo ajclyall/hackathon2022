@@ -40,6 +40,6 @@ if __name__=='__main__':
     start_state = main_story.find_state(0)
 
     main_story.set_cur_state(start_state)
-    start_state.do_state(app)
-
+    #start_state.do_state(app)
+    app.draw_image()
     app.mainloop()

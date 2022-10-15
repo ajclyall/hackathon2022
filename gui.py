@@ -1,6 +1,10 @@
 import tkinter as tk
-#from PIL import ImageTk, Image
 from random import randint
+
+
+# from PIL.ImageTk import PhotoImage
+
+from ai import generate_image
 
 
 class GUI(tk.Frame):
@@ -23,6 +27,7 @@ class GUI(tk.Frame):
         self.lineheight = self.canvasheight//self.screen_height
         self.characterwidth = (self.canvaswidth-self.margin)//self.screen_width
         self.font = ('Courier','15','bold')
+
 
         # Inputing text stuff
         self.input_list = []
@@ -64,12 +69,18 @@ class GUI(tk.Frame):
         self.input_list.append(char)
 
     def clear_canvas(self):
-        self.canvas.clear()
+        self.canvas.clear() # NOT RIGHT
 
-    #def set_image(self):
-        #prompt = self.prompt_var.get()
+    def draw_image(self):
+
+        prompt = "a little goblin man"
         #generate_image(prompt)
-        #self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
-        #self.label.configure(image=self.image)
+        img = tk.PhotoImage(file='image.png')
+        self.img = img ## SHEAR WITCHCRAFT
+        self.canvas.create_image(self.get_cursor_canvaspos(), image=img, anchor=tk.NW)
+
+
+        # self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
+        # self.label.configure(image=self.image)
 
 
