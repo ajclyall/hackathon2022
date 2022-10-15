@@ -29,6 +29,6 @@ def caller():
     max_length = 100
     sequence = ("Hello "+ name + ", I am George \n"
                 "I am calling you to let you know you have an inheritance waiting for you in the south of France. \n"
-                "If you have any questions"
+                "If you have any questions "
                 )
     return sequence, max_length
