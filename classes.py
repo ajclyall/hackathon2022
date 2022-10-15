@@ -1,93 +1,87 @@
+import csv
 
 class State:
-    def __init__(self, story, room):
+    def __init__(self, story, id, content, next_state_ids):
         self.story = story
-        self.room = room
+        self.id = id
 
-        self.prompt = None
-        self.image = None
-        self.cutscene = None
+        self.content = content
+        self.next_state_ids = next_state_ids
 
         self.state_change_ready = False
 
-    def set_prompt(self, prompt):
-        self.prompt = prompt
 
-    def set_cutscene(self, cutscene):
-        self.cutscene = cutscene
-
-    def set_image(self, image):
-        self.image = image
-
+class Prompt(State):
+    def __init__(self, story, id, content, next_state_ids):
+        super().__init__(story, id, content, next_state_ids)
+        self.question = content[0]
+        self.choices = content[1:]
 
     def do_state(self, app):
-        if not self.prompt is None:
-            self.prompt.do_prompt(app)
-
-        if not self.cutscene is None:
-            self.story.set_next_state(self.cutscene.do_cutscene(app))
-
-        if not self.image is None:
-            self.story.set_next_state(self.image.do_image(app))
-
-        if not app.is_capturing:
-            self.state_change_ready = True
-
-    def finish_state(self, app):
-        if not self.prompt is None:
-            next_state = self.prompt.finish_prompt(app)
-            self.story.set_next_state(next_state)
-            self.state_change_ready = True
-
-
-class Prompt:
-    def __init__(self, question, choices, states):
-        self.question = question
-        self.choices = choices
-        self.states = states
-
-    def do_prompt(self, app):
         app.write_text('Q: '+self.question+'\n')
         app.write_text('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)])+'\n')
         app.start_inputing()
 
-    def finish_prompt(self, app):
+    def is_state_done(self, app, keyevent):
+        if app.is_capturing and keyevent.keycode == 13:
+            return True
+        else:
+            return False
+
+    def finish_state(self, app):
+        app.is_capturing = False
         answer = int(app.get_finished_input())
-        return self.states[answer]
+        next_state = self.story.find_state(self.next_state_ids[answer])
+        self.story.set_next_state(next_state)
+        self.state_change_ready = True
 
-class Image:
-    def __init__(self, image_prompt, next_state):
-        self.image_prompt = image_prompt
-        self.next_state = next_state
+    def from_csv(story, id, content, next_state_ids):
+        new_state = Prompt(story, id, content, next_state_ids)
+        return new_state
 
-    def do_image(self, app):
-        print('Fetching an image with the prompt',self.image_prompt)
-        print('Displaying image')
-        print('Moving to next state')
-        return self.next_state
+class Image(State):
+    def __init__(self, story, id, content, next_state_ids):
+        super().__init__(story, id, content, next_state_ids)
 
-class CutScene:
-    def __init__(self, textstory, next_state):
-        self.textstory = textstory
-        self.next_state = next_state
-
-    def do_cutscene(self, app):
-        app.delay_write_text(self.textstory)
-        return self.next_state
-
-    def finish_cutscene(self, app):
+    def do_state(self, app):
         pass
 
-class Room:
-    def __init__(self, name):
-        self.name = name
+    def finish_state(self, app):
+        pass
 
+    def from_csv(story, id, content, next_state_ids):
+        new_state = Image(story, id, content, next_state_ids)
+        return new_state
 
+class CutScene(State):
+    def __init__(self, story, id, content, next_state_ids):
+        super().__init__(story, id, content, next_state_ids)
+        self.textstory = content[0]
+
+    def do_state(self, app):
+        app.delay_write_text(self.textstory)
+        app.write_text('\nPress any key to continue...\n')
+
+    def is_state_done(self, app, keyevent):
+        if keyevent.char != '':
+            return True
+        else:
+            return False
+
+    def finish_state(self,app):
+        next_state = self.story.find_state(self.next_state_ids[0])
+        self.story.set_next_state(next_state)
+        self.state_change_ready = True
+
+    def from_csv(story, id, content, next_state_ids):
+        new_state = CutScene(story, id, content, next_state_ids)
+        return new_state
 
 class Story:
     def __init__(self):
         self.next_state = None
         self.cur_state = None
+        self.states = []
 
     def get_next_state(self):
         return self.next_state
@@ -100,3 +94,21 @@ class Story:
 
     def set_cur_state(self, state):
         self.cur_state = state
+
+    def read_states(self):
+        with open('states.csv') as states_file:
+            states = csv.DictReader(states_file)
+            for state in states:
+                if (state["TYPE"]=="CUTSCENE"):
+                    new_state = CutScene.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                elif (state["TYPE"]=="IMAGE"):
+                    new_state = Image.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                elif (state["TYPE"]=="PROMPT"):
+                    new_state = Prompt.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+
+                self.states.append(new_state)
+
+    def find_state(self, id):
+        for state in self.states:
+            if state.id == id:
+                return state
