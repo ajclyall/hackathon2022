@@ -1,24 +1,14 @@
 import tkinter as tk
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 from random import randint
-#from ai import generate_image
-#from django.utils.text import slugify
 
 
 class GUI(tk.Frame):
+    
     def __init__(self, master=None):
         tk.Frame.__init__(self, master)
         self.pack()
-
-
-        """
-        self.prompt_var = tk.StringVar()
-        self.entry = tk.Entry(master, textvariable=self.prompt_var)
-        self.submit_button = tk.Button(master, text="submit", command=self.set_image)
-        self.image = tk.PhotoImage(file='test.png')
-        self.label = tk.Label(image=self.image)
-        """
-
+       
         # Canvas Variables
         self.canvaswidth = 1000
         self.canvasheight = 428
@@ -29,23 +19,19 @@ class GUI(tk.Frame):
         self.cursorpos = (0,0)
         self.screen_width = 80
         self.screen_height = 25
+        self.margin = 8
         self.lineheight = self.canvasheight//self.screen_height
-        self.characterwidth = self.canvaswidth//self.screen_width
+        self.characterwidth = (self.canvaswidth-self.margin)//self.screen_width
         self.font = ('Courier','15','bold')
 
         # Inputing text stuff
         self.input_list = []
         self.is_capturing = False
 
-        #self.entry.pack()
-        #self.label.pack()
-        self.canvas.pack(pady=100)
-        #self.submit_button.pack()
-
-        #self.write_text('Hello world!\nThe end is nigh.')
+        self.canvas.pack(pady=200)
 
     def get_cursor_canvaspos(self):
-        return (self.cursorpos[0]*self.characterwidth,self.cursorpos[1]*self.lineheight)
+        return (self.cursorpos[0]*self.characterwidth+self.margin,self.cursorpos[1]*self.lineheight)
 
     def draw_character(self, char):
         if char == '\n':
@@ -53,7 +39,6 @@ class GUI(tk.Frame):
         else:
             self.canvas.create_text(*self.get_cursor_canvaspos(), text=char, fill='white', font=self.font, anchor=tk.NW)
             self.cursorpos = (self.cursorpos[0]+1, self.cursorpos[1])
-        #time.sleep(0.05)
 
     def write_text(self,text):
         for char in text:
@@ -78,10 +63,13 @@ class GUI(tk.Frame):
     def store_char(self, char):
         self.input_list.append(char)
 
-    def set_image(self):
-        prompt = self.prompt_var.get()
+    def clear_canvas(self):
+        self.canvas.clear()
+
+    #def set_image(self):
+        #prompt = self.prompt_var.get()
         #generate_image(prompt)
         #self.image = ImageTk.PhotoImage(file=f"{slugify(prompt)}.png")
-        self.label.configure(image=self.image)
+        #self.label.configure(image=self.image)
 
 
