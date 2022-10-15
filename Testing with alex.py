@@ -13,7 +13,7 @@ sequence = ("Hi my name is James \n"
             "I know you inherited the castle \n"
             "Have you heard the infinite horror stories about the bloody viscount \n"
             "He used to live in the castle on the hill, \n"
-            "and he massacred hundreds of towns people \n"
+            "and he massacred hundreds of towns people. \n"
             )
 inputs = tokenizer.encode(sequence, return_tensors='pt')
 outputs = model.generate(inputs, max_length=150, do_sample=True, temperature=0.5, top_k=50, no_repeat_ngram_size=2,)
