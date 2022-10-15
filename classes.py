@@ -21,9 +21,6 @@ class State:
 
 
     def do_state(self, app):
-        print('\nDoing state...', end='')
-        print('in room ',self.room.name)
-
         if not self.prompt is None:
             self.prompt.do_prompt(app)
 
@@ -39,8 +36,6 @@ class State:
     def finish_state(self, app):
         if not self.prompt is None:
             next_state = self.prompt.finish_prompt(app)
-            print(next_state)
-            print('YOU DIDNT EVEN REACH THIS POINT')
             self.story.set_next_state(next_state)
             self.state_change_ready = True
 
@@ -55,9 +50,6 @@ class Prompt:
         app.write_text('Q: '+self.question+'\n')
         app.write_text('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)])+'\n')
         app.start_inputing()
-        #answer = int(app.input_text()) ## INPUT VALIDATION NEEDED
-        #print('This state is ready to move on :(')
-        #return self.states[answer]
 
     def finish_prompt(self, app):
         answer = int(app.get_finished_input())
@@ -82,6 +74,9 @@ class CutScene:
     def do_cutscene(self, app):
         app.delay_write_text(self.textstory)
         return self.next_state
+
+    def finish_cutscene(self, app):
+        pass
 
 class Room:
     def __init__(self, name):
