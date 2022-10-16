@@ -2,7 +2,7 @@ import replicate
 import requests
 from os.path import exists
 
-rep = replicate.Client(api_token="e53c3e92e92cedf6f1e24a377e261efa92d83a0d")
+rep = replicate.Client(api_token="7e406bcd99e5fd119d2ca85e19a038ab6d890d05")
 model = rep.models.get("stability-ai/stable-diffusion")
 
 
