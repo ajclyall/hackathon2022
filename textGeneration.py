@@ -46,5 +46,5 @@ def produceDialog(content):
     returnText = "".join(finalText)
     return returnText
 
-produceDialog(townMan())
+#produceDialog(townMan())
 

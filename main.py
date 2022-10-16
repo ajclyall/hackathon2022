@@ -41,5 +41,4 @@ if __name__=='__main__':
 
     main_story.set_cur_state(start_state)
     start_state.do_state(app)
-    #app.draw_image()
     app.mainloop()

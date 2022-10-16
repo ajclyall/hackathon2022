@@ -1,11 +1,8 @@
-from imp import acquire_lock
 import tkinter as tk
 from random import randint
 
 
 # from PIL.ImageTk import PhotoImage
-
-from ai import generate_image
 
 
 class GUI(tk.Frame):

@@ -1,13 +1,14 @@
 import csv
-#from textGeneration import *
+from textGeneration import *
 
 #import ai
 
 
 class State:
-    def __init__(self, story, id, content, next_state_ids):
+    def __init__(self, story, id, wipe, content, next_state_ids):
         self.story = story
         self.id = id
+        self.wipe = wipe
 
         self.content = content
         self.next_state_ids = next_state_ids
@@ -16,8 +17,8 @@ class State:
 
 
 class Prompt(State):
-    def __init__(self, story, id, content, next_state_ids):
-        super().__init__(story, id, content, next_state_ids)
+    def __init__(self, story, id, wipe, content, next_state_ids):
+        super().__init__(story, id, wipe, content, next_state_ids)
         self.question = content[0]
         self.choices = content[1:]
 
@@ -39,13 +40,13 @@ class Prompt(State):
         self.story.set_next_state(next_state)
         self.state_change_ready = True
 
-    def from_csv(story, id, content, next_state_ids):
-        new_state = Prompt(story, id, content, next_state_ids)
+    def from_csv(story, id, wipe, content, next_state_ids):
+        new_state = Prompt(story, id, wipe, content, next_state_ids)
         return new_state
 
 class Image(State):
-    def __init__(self, story, id, content, next_state_ids):
-        super().__init__(story, id, content, next_state_ids)
+    def __init__(self, story, id, wipe, content, next_state_ids):
+        super().__init__(story, id, wipe, content, next_state_ids)
 
     def do_state(self, app):
         app.clear_canvas()
@@ -65,16 +66,19 @@ class Image(State):
         self.story.set_next_state(next_state)
         self.state_change_ready = True
 
-    def from_csv(story, id, content, next_state_ids):
-        new_state = Image(story, id, content, next_state_ids)
+    def from_csv(story, id, wipe, content, next_state_ids):
+        new_state = Image(story, id, wipe, content, next_state_ids)
         return new_state
 
 class CutScene(State):
-    def __init__(self, story, id, content, next_state_ids):
-        super().__init__(story, id, content, next_state_ids)
+    def __init__(self, story, id, wipe, content, next_state_ids):
+        super().__init__(story, id, wipe, content, next_state_ids)
         self.textstory = content[1]
+        self.prep_state()
 
     def do_state(self, app):
+        if self.wipe:
+            app.clear_canvas()
         app.delay_write_text(self.textstory+'\n\n')
 
     def is_state_done(self, app, keyevent):
@@ -88,13 +92,12 @@ class CutScene(State):
         self.story.set_next_state(next_state)
         self.state_change_ready = True
 
-    def from_csv(story, id, content, next_state_ids):
-        new_state = CutScene(story, id, content, next_state_ids)
+    def from_csv(story, id, wipe, content, next_state_ids):
+        new_state = CutScene(story, id, wipe, content, next_state_ids)
         return new_state
 
     def prep_state(self):
-        pass
-        #self.textstory = produceDialog(content=self.content)
+        self.textstory = produceDialog(self.content)
 
 class Story:
     def __init__(self):
@@ -116,12 +119,12 @@ class Story:
             states = csv.DictReader(states_file)
             for state in states:
                 if (state["TYPE"]=="CUTSCENE"):
-                    new_state = CutScene.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                    new_state = CutScene.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
                 elif (state["TYPE"]=="IMAGE"):
-                    new_state = Image.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                    new_state = Image.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
                     ai.generate_image(new_state)
                 elif (state["TYPE"]=="PROMPT"):
-                    new_state = Prompt.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                    new_state = Prompt.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
 
                 self.states.append(new_state)
 
