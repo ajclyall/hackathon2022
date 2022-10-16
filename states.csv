@@ -1,5 +1,5 @@
 ID,TYPE,WIPE,CONTENT,NEXTSTATES
-0,CUTSCENE,TRUE,0+Press any key to continue...,6
+0,CUTSCENE,TRUE,0+Press any key to continue...,12
 1,CUTSCENE,FALSE,0+You are looking out the dirty little window in your flat over the sprawling metropolis of Glasgow. Plumes of smoke billow from the vapes of the passerbys. Your phone rings in your pocket.,2
 2,PROMPT,FALSE,Answer the call?+Yes+No,3+4
 3,CUTSCENE,TRUE,"100+Hello, I am George. I am calling you to let you know you have an inheritance waiting for you in the south of France. If you have any questions",5
@@ -11,6 +11,13 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 9,CUTSCENE,TRUE,"0+You get picked up at the airport and driven to the bottom of a hill in silence. You see a small winding path leading up the hill. And the man points at it and speaks in french. ",10
 10,IMAGE,TRUE,scary path woods hill mountain dark+As you start walking up the hill the man begins to speak in broken french.,11
 11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,",12
-12,CUTSCENE,TRUE,0+As you approch the top of the hill the man points to the right and says voila: inheritance.,12
-412323,CUTSCENE,TRUE,"150+Hi my name is James. I know you inherited the castle \n Have you heard the infinite horror stories about the bloody viscount \n He used to live in the castle on the hill, \n and he massacred hundreds of towns people. \n",3
-512323,CUTSCENE,TRUE,"50+Good afternoon, what are you looking for today?\n I've got bread, muffins",4
+12,CUTSCENE,TRUE,0+As you approch the top of the hill the man points to the right and says voila: inheritance.,13
+13,IMAGE,TRUE,dark scary medieval elegant castle+The. Castle. You walk in and leave your stuff. [ALI],14
+14,IMAGE,TRUE,"old large stone entrance halway elegant wood medieval, candles",15
+15,PROMPT,FALSE,What would you like to do next?+Go to the villiage+Explorer the castle,16+100
+16,IMAGE,TRUE,french town small old medieval+You get to the town and look around.,17
+17,PROMPT,FALSE,What would you like to do next?+Speak to a man on the street+Go into the town bakery+Go back to the castle,18+20+14
+18,IMAGE,TRUE,"person, towns man, village, medieval art, short, shepherd+",19
+19,CUTSCENE,FALSE,"150+Hi my name is James. I know you inherited the castle. Have you heard the infinite horror stories about the bloody viscount. He used to live in the castle on the hill, and he massacred hundreds of towns people.",17
+20,IMAGE,TRUE,"person, baker, medieval art, bakery, fat+",21
+21,CUTSCENE,FALSE,"70+Good afternoon, what are you looking for today? I've got bread, muffins",17

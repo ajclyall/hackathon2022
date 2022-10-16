@@ -35,7 +35,7 @@ class GUI(tk.Frame):
         self.input_list = []
         self.is_capturing = False
 
-        self.canvas.pack(pady=200)
+        self.canvas.pack(pady=150)
 
     def set_image_mode(self):
         self.image_margin = 515
