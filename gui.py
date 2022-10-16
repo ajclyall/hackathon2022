@@ -1,7 +1,6 @@
 from imp import acquire_lock
 import tkinter as tk
 from random import randint
-from threading import Lock
 
 
 # from PIL.ImageTk import PhotoImage
@@ -48,8 +47,11 @@ class GUI(tk.Frame):
         if char == '\n':
             self.cursorpos = (0, self.cursorpos[1]+1)
         else:
-            self.canvas.create_text(*self.get_cursor_canvaspos(), text=char, fill='white', font=self.font, anchor=tk.NW)
-            self.cursorpos = (self.cursorpos[0]+1, self.cursorpos[1])
+            if (self.cursorpos[0] >= self.screen_width-8 and char==' ' ) or self.cursorpos[0] >= self.screen_width-1:
+                self.cursorpos = (0, self.cursorpos[1]+1)
+            else:
+                self.canvas.create_text(*self.get_cursor_canvaspos(), text=char, fill='white', font=self.font, anchor=tk.NW)
+                self.cursorpos = (self.cursorpos[0]+1, self.cursorpos[1])
 
 
     def write_text(self,text):

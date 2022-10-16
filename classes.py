@@ -1,7 +1,7 @@
 import csv
-from textGeneration import *
+#from textGeneration import *
 
-import ai
+#import ai
 
 
 class State:
@@ -72,11 +72,10 @@ class Image(State):
 class CutScene(State):
     def __init__(self, story, id, content, next_state_ids):
         super().__init__(story, id, content, next_state_ids)
-        self.textstory = ""
+        self.textstory = content[1]
 
     def do_state(self, app):
-        app.delay_write_text(self.textstory)
-        app.write_text('\nPress any key to continue...\n')
+        app.delay_write_text(self.textstory+'\n\n')
 
     def is_state_done(self, app, keyevent):
         if keyevent.char != '':
@@ -94,7 +93,8 @@ class CutScene(State):
         return new_state
 
     def prep_state(self):
-        self.textstory = produceDialog(content=self.content)
+        pass
+        #self.textstory = produceDialog(content=self.content)
 
 class Story:
     def __init__(self):
