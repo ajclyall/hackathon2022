@@ -7,7 +7,7 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 5,PROMPT,FALSE,What do you do?+Go to France+Remain in Glasgow,6+4
 6,IMAGE,TRUE,"darkness shadowy scary beady eyes watching+Beaded sweat trickles down my shivering back as I force my tired eyes open. Although dark, the view has a hazy familiarity... I'm not alone. Pin-prick holes in the colourless void let disconcerting light creep through. These thousand glossy eyes blink in unison, and I cherish this brief instant of isolation.",7
 7,IMAGE,TRUE,"economy plane seat baby loud french+The rattling turbulence wakes you from your disturbed slumber. There is a baby crying in your left ear. You are in the back of a plane on the way to France. Thank god I'm always there.",9
-8,CUTSCENE,FALSE,"100+You lose touch with most of your family and die desperately alone. This will be the last year of your life. You tell others that...",8
+8,CUTSCENE,FALSE,"100+You lose touch with most of your family and die desperately alone. This will be the last year of your life. You tell others that...",0
 9,CUTSCENE,TRUE,"0+You get picked up at the airport and driven to the bottom of a hill in punishing silence. A small winding path leads up the incline, and the man gestures to it and speaks in French. ",10
 10,IMAGE,TRUE,scary path woods hill mountain dark+As you begin your ascent up the hill the man attempts to converse in broken English.,11
 11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,...",12
