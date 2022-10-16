@@ -25,6 +25,8 @@ class Prompt(State):
         self.choices = content[1:]
 
     def do_state(self, app):
+        if self.wipe:
+            app.clear_canvas()
         app.write_text('Q: '+self.question+'\n')
         app.write_text('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)])+'\n')
         app.start_inputing()
@@ -54,11 +56,13 @@ class Image(State):
         super().__init__(story, id, wipe, content, next_state_ids)
 
     def do_state(self, app):
+        if self.wipe:
+            app.clear_canvas()
         app.clear_canvas()
         app.draw_image(self)
         app.image_margin = 515
         
-        app.write_text('Some text like')
+        app.write_text(self.content[1])
 
     def is_state_done(self, app, keyevent):
         if keyevent.char != '':
@@ -75,8 +79,6 @@ class Image(State):
         new_state = Image(story, id, wipe, content, next_state_ids)
         return new_state
 
-    def prep_state(self):
-        pass
 
 class CutScene(State):
     def __init__(self, story, id, wipe, content, next_state_ids):
@@ -106,7 +108,8 @@ class CutScene(State):
 
     def prep_state(self):
         if self.content[0] != '0':
-            self.textstory = produceDialog(self.content)
+            #self.textstory = produceDialog(self.content)
+            pass
 
 class Story:
     def __init__(self):
