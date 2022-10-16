@@ -1,5 +1,5 @@
 ID,TYPE,WIPE,CONTENT,NEXTSTATES
-0,CUTSCENE,TRUE,0+Press any key to continue...,12
+0,CUTSCENE,TRUE,0+Press any key to continue...,22
 1,CUTSCENE,FALSE,0+You are looking out the dirty little window in your flat over the sprawling metropolis of Glasgow. Plumes of smoke billow from the vapes of the passerbys. Your phone rings in your pocket.,2
 2,PROMPT,FALSE,Answer the call?+Yes+No,3+4
 3,CUTSCENE,TRUE,"100+Hello, I am George. I am calling you to let you know you have an inheritance waiting for you in the south of France. If you have any questions",5
@@ -14,10 +14,17 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 12,CUTSCENE,TRUE,0+As you approch the top of the hill the man points to the right and says voila: inheritance.,13
 13,IMAGE,TRUE,dark scary medieval elegant castle+The. Castle. You walk in and leave your stuff. [ALI],14
 14,IMAGE,TRUE,"old large stone entrance halway elegant wood medieval, candles",15
-15,PROMPT,FALSE,What would you like to do next?+Go to the villiage+Explorer the castle,16+100
+15,PROMPT,FALSE,What would you like to do next?+Go to the villiage+Explorer the castle,16+22
 16,IMAGE,TRUE,french town small old medieval+You get to the town and look around.,17
 17,PROMPT,FALSE,What would you like to do next?+Speak to a man on the street+Go into the town bakery+Go back to the castle,18+20+14
 18,IMAGE,TRUE,"person, towns man, village, medieval art, short, shepherd+",19
 19,CUTSCENE,FALSE,"150+Hi my name is James. I know you inherited the castle. Have you heard the infinite horror stories about the bloody viscount. He used to live in the castle on the hill, and he massacred hundreds of towns people.",17
 20,IMAGE,TRUE,"person, baker, medieval art, bakery, fat+",21
 21,CUTSCENE,FALSE,"70+Good afternoon, what are you looking for today? I've got bread, muffins",17
+22,PROMPT,FALSE,Where should we go?+Kitchen+Bedroom+Dungeon+Attick,23+25+26+24
+23,IMAGE,TRUE,"old large stone kitchen, leaking celling, puddle of water on the floor, dark, elegant, wooden and stone, knives, hanging dry food, big table in the middle, dead flowers, medieval, candles+Kitchen",27
+24,IMAGE,TRUE,medieval castle attic dusty scary dark stone+Attic,28
+25,IMAGE,TRUE,"big bedroom with a mirror, medieval art, scary, elegant, fireplace, medieval castle+Bedroom",22
+26,IMAGE,TRUE,Medieval castle basement dusty scary dark stone bricks catacombs torchlight dim dungeon+Dungeon,22
+27,CUTSCENE,FALSE,"0+You enter the kitchen, a colossal place where you can imagine cooks running about to get feasts ready for the residents. You can feel their disappointment at the state of it now, leaky ceilings, candle wax on the surfaces,dust and grime all over the place. Pieces of rotting utensils are now far from being recognizable. As you walk in, you catch a glimpse of yourself on a puddle on the ground",22
+28,CUTSCENE,FALSE,"0+A dusty old attic that may have once been a nice storage place but now sits empty, with only the footprints of the various critters that have inhabited this place when the owners were absent.",22
