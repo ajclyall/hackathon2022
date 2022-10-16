@@ -1,30 +1,54 @@
 ID,TYPE,WIPE,CONTENT,NEXTSTATES
-0,CUTSCENE,TRUE,0+Press any key to continue...,22
-1,CUTSCENE,FALSE,0+You are looking out the dirty little window in your flat over the sprawling metropolis of Glasgow. Plumes of smoke billow from the vapes of the passerbys. Your phone rings in your pocket.,2
+0,CUTSCENE,TRUE,0+Press any key to continue...,39
+1,CUTSCENE,FALSE,0+You are peering out the dirty little window in your flat over the sprawling metropolis of Glasgow. Plumes of thick smoke billow from the vapes of passerby's. You feel your phone ring in your pocket.,2
 2,PROMPT,FALSE,Answer the call?+Yes+No,3+4
-3,CUTSCENE,TRUE,"100+Hello, I am George. I am calling you to let you know you have an inheritance waiting for you in the south of France. If you have any questions",5
-4,CUTSCENE,TRUE,"100+You get employed in JP Morgan. A long career follows. Unfortunately, ",8
-5,PROMPT,FALSE,What do you do?+Go to France+Stay in Glasgow,6+4
-6,IMAGE,TRUE,scary terrifying shadows behind me nightmare trippy+[ALI describes a bad dream here].,7
-7,IMAGE,TRUE,economy plane seat baby loud french+The turbulence wakes you. There is a baby crying in your left ear. You are in the back of a plane on the way to france. Thank god there is only 20 minutes left of the flight.,9
-8,CUTSCENE,FALSE,100+You lose most of your family and die alone. This will be the last year of your life. You tell others that,8
-9,CUTSCENE,TRUE,"0+You get picked up at the airport and driven to the bottom of a hill in silence. You see a small winding path leading up the hill. And the man points at it and speaks in french. ",10
-10,IMAGE,TRUE,scary path woods hill mountain dark+As you start walking up the hill the man begins to speak in broken french.,11
+3,CUTSCENE,TRUE,"100+Hello, I am George. I am contacting you to inform you of a large inheritance waiting for you in the south of France. If you have any questions",5
+4,CUTSCENE,TRUE,"100+You get employed at JP Morgan. A long career follows. Unfortunately, ",8
+5,PROMPT,FALSE,What do you do?+Go to France+Remain in Glasgow,6+4
+6,IMAGE,TRUE,"darkness shadowy scary beady eyes watching+Beaded sweat trickles down my shivering back as I force my tired eyes open. Although dark, the view has a hazy familiarity... I'm not alone. Pin-prick holes in the colourless void let disconcerting light creep through. These thousand glossy eyes blink in unison, and I cherish this brief instant of isolation.",7
+7,IMAGE,TRUE,"economy plane seat baby loud french+The rattling turbulence wakes you from your disturbed slumber. There is a baby crying in your left ear. You are in the back of a plane on the way to France. Thank god I'm always there.",9
+8,CUTSCENE,FALSE,"100+You lose touch with most of your family and die desperately alone. This will be the last year of your life. You tell others that",8
+9,CUTSCENE,TRUE,"0+You get picked up at the airport and driven to the bottom of a hill in punishing silence. A small winding path leads up the incline, and the man gestures to it and speaks in French. ",10
+10,IMAGE,TRUE,scary path woods hill mountain dark+As you begin your ascent up the hill the man attempts to converse in broken English.,11
 11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,",12
-12,CUTSCENE,TRUE,0+As you approch the top of the hill the man points to the right and says voila: inheritance.,13
-13,IMAGE,TRUE,dark scary medieval elegant castle+The. Castle. You walk in and leave your stuff. [ALI],14
-14,IMAGE,TRUE,"old large stone entrance halway elegant wood medieval, candles",15
-15,PROMPT,FALSE,What would you like to do next?+Go to the villiage+Explorer the castle,16+22
-16,IMAGE,TRUE,french town small old medieval+You get to the town and look around.,17
+12,CUTSCENE,TRUE,"0+As you approach the summit, the man points to his right and proudly exclaims, 'Voila! Inheritance!'.",13
+13,IMAGE,TRUE,dark scary medieval elegant castle+The Castle,52
+14,IMAGE,TRUE,"old large stone entrance hallway elegant wood medieval, candles",15
+15,PROMPT,FALSE,Where would you like to go next?+To the village+Explore the castle,16+22
+16,IMAGE,TRUE,french town small old medieval+You arrive in the town and take in the sights.,17
 17,PROMPT,FALSE,What would you like to do next?+Speak to a man on the street+Go into the town bakery+Go back to the castle,18+20+14
 18,IMAGE,TRUE,"person, towns man, village, medieval art, short, shepherd+",19
 19,CUTSCENE,FALSE,"150+Hi my name is James. I know you inherited the castle. Have you heard the infinite horror stories about the bloody viscount. He used to live in the castle on the hill, and he massacred hundreds of towns people.",17
 20,IMAGE,TRUE,"person, baker, medieval art, bakery, fat+",21
 21,CUTSCENE,FALSE,"70+Good afternoon, what are you looking for today? I've got bread, muffins",17
-22,PROMPT,FALSE,Where should we go?+Kitchen+Bedroom+Dungeon+Attick,23+25+26+24
+22,PROMPT,FALSE,Where should we go?+Kitchen+Bedroom+Dungeon+Attic+Leave the castle,23+25+26+24+14
 23,IMAGE,TRUE,"old large stone kitchen, leaking celling, puddle of water on the floor, dark, elegant, wooden and stone, knives, hanging dry food, big table in the middle, dead flowers, medieval, candles+Kitchen",27
 24,IMAGE,TRUE,medieval castle attic dusty scary dark stone+Attic,28
 25,IMAGE,TRUE,"big bedroom with a mirror, medieval art, scary, elegant, fireplace, medieval castle+Bedroom",22
-26,IMAGE,TRUE,Medieval castle basement dusty scary dark stone bricks catacombs torchlight dim dungeon+Dungeon,22
+26,IMAGE,TRUE,Medieval castle basement dusty scary dark stone bricks catacombs torchlight dim dungeon+Dungeon,29
 27,CUTSCENE,FALSE,"0+You enter the kitchen, a colossal place where you can imagine cooks running about to get feasts ready for the residents. You can feel their disappointment at the state of it now, leaky ceilings, candle wax on the surfaces,dust and grime all over the place. Pieces of rotting utensils are now far from being recognizable. As you walk in, you catch a glimpse of yourself on a puddle on the ground",22
 28,CUTSCENE,FALSE,"0+A dusty old attic that may have once been a nice storage place but now sits empty, with only the footprints of the various critters that have inhabited this place when the owners were absent.",22
+29,PROMPT,FALSE,"You hear a noise behind one of the limestone walls+Investigate further+Flee",30+22
+30,IMAGE,TRUE,"orthodox large church sinister intimidating, medieval art+The Hidden Church",31
+31,IMAGE,TRUE,"orthodox stained glass windows, medieval art+The Hidden Church",32
+32,IMAGE,TRUE,"orthodox scary priest in church, medieval art+The Hidden Church",33
+33,CUTSCENE,FALSE,"100+Beaded sweat trickles down my shivering back as I force my tired eyes open. The vast atrium of the church instills a sense of dread and ",34
+34,IMAGE,TRUE,"group of priests in circle, medieval art+",35
+35,CUTSCENE,FALSE,"100+Following the wail of a distant chant, you see a group of priests performing what you can only assume is a ritual. They seem to be ",36
+36,IMAGE,TRUE,"group of evil goblin priests, on fire, photorealistic+Realising your approach, the cult suddenly transform into a syndicate of vile creatures!",37
+37,CUTSCENE,FALSE,"50+You think the group now resembles a circle of hell, populated by otherworldly grotesque demons. Their lumbering limbs struggle towards you and ",38
+38,IMAGE,TRUE,"fire evil goblin priests attack the camera+ENCOUNTER",39
+39,PROMPT,FALSE,"They draw closer, do you?+Attempt to flee+Stay and fight+Lay down, surrender yourself to the soil",40+41+50
+40,CUTSCENE,TRUE,"0+Like an owl, your head swiftly swivels back towards the way you came, only for these futile hopes to be dashed by a wall of flames, engulfing the escape you now long for",39
+41,CUTSCENE,TRUE,"0+Putting up your dukes, you plant your feet firmly where you stand. Being from Glasgow, this isn't the first time you've clobbered a religious leader",42
+42,IMAGE,TRUE,"epic fight between good and evil+The Fight",43
+43,PROMPT,FALSE,"Do you: + Aim for the creatures' jugular, with your trusty pen knife? + Throw your shoe at the chandelier above them? + Try to befriend them? Maybe you have some common interests?",44+46+44
+44,IMAGE,TRUE,"man lying on the dirty ground+What did you think would happen?",45
+45,CUTSCENE,FALSE,"0+You succumb to the forces of evil, allowing your lifeless, deformed corpse to be used for their sinister rituals. And you have to stay in France for eternity.",0
+46,CUTSCENE,TRUE,"0+Knocking the old screws loose, the chandelier comes crashing downwards, and onto the lifeform in the centre of the circle. They all wince, only to then, in a cloud of smoke, be transformed to a red dust. Success! Their cross necklaces top the fine piles of powder.",47
+47,IMAGE,TRUE,"putting on a shoe+You put your shoe back on",48
+48,IMAGE,TRUE,"large prosperous castle, wealthy, french architecture+You return to the surface, to find the castle revitalised, glimmering with riches reserved usually for the aristocracy",49
+49,CUTSCENE,FALSE,"0+As you retire to your new chambers, you wonder what on earth your dead relative did for work", 0
+50,IMAGE,TRUE,"closed eyes, sleeping man+You close your eyes",51
+51,CUTSCENE,TRUE,"0+You awake in a clinical insane asylum, wondering whether any of that was ever real, or was it generated by your mind?",0
+52,CUTSCENE,FALSE,"100+The castle ahead appears ",14
