@@ -1,5 +1,4 @@
 import re
-
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
@@ -10,8 +9,8 @@ model = GPT2LMHeadModel.from_pretrained('gpt2')
 
 def produceDialog(content):
 
-    print("this is zero : ", content[0])
-    print("this is one : ", content[1])
+    #print("this is zero : ", content[0])
+    #print("this is one : ", content[1])
     sequence = content[1]
     max_length = int(content[0])
 
@@ -39,17 +38,22 @@ def produceDialog(content):
         str = finalText[-1].rstrip()
         if len(str) <= 1:
             del finalText[-1]
-            str = finalText[-1].rstrip()
-       # print("Loop "+str + " " + str[-1])
+            try:
+                str = finalText[-1].rstrip()
+            except:
+                str = finalText
 
-        if (str[-1] not in points):
-            str_sp = re.findall('.*?[.!\?]', str)
-            finalText[-1] = "".join(str_sp)
-        else:
+        try:
+            if (str[-1] not in points):
+                str_sp = re.findall('.*?[.!\?]', str)
+                finalText[-1] = "".join(str_sp)
+            else:
+                filtered = True
+        except:
             filtered = True
+
 
     returnText = "\n".join(finalText)
     return returnText
 
-#produceDialog(townMan())
 
