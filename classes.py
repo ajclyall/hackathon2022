@@ -28,7 +28,7 @@ class Prompt(State):
     def do_state(self, app):
         if self.wipe:
             app.clear_canvas()
-        app.write_text('Q: '+self.question+'\n')
+        app.write_text('\nQ: '+self.question+'\n')
         app.write_text('A: '+', '.join([str(i)+') '+choice for i,choice in enumerate(self.choices)])+'\n')
         app.start_inputing()
 
@@ -40,8 +40,17 @@ class Prompt(State):
 
     def finish_state(self, app):
         app.is_capturing = False
-        answer = int(app.get_finished_input())
-        next_state = self.story.find_state(self.next_state_ids[answer])
+        try:
+            answer = int(app.get_finished_input())
+            not_acc = False
+        except:
+            answer = " "
+            not_acc = True
+        accepted_inputs = list(range(len(self.choices)))    
+        if (answer not in accepted_inputs) or not_acc: #check answer if not valid make nextstate the same one
+            next_state = self
+        else:
+            next_state = self.story.find_state(self.next_state_ids[answer])
         if next_state.wipe:
             app.set_normal_mode()
         self.story.set_next_state(next_state)
