@@ -1,7 +1,6 @@
 import csv
-#from textGeneration import *
-
-#import ai
+from textGeneration import *
+import ai
 
 
 class State:
@@ -13,6 +12,9 @@ class State:
         self.next_state_ids = next_state_ids
 
         self.state_change_ready = False
+    
+    def prep_state(self):
+        return
 
 
 class Prompt(State):
@@ -43,6 +45,9 @@ class Prompt(State):
         new_state = Prompt(story, id, content, next_state_ids)
         return new_state
 
+    def prep_state(self):
+        pass
+
 class Image(State):
     def __init__(self, story, id, content, next_state_ids):
         super().__init__(story, id, content, next_state_ids)
@@ -69,6 +74,9 @@ class Image(State):
         new_state = Image(story, id, content, next_state_ids)
         return new_state
 
+    def prep_state(self):
+        pass
+
 class CutScene(State):
     def __init__(self, story, id, content, next_state_ids):
         super().__init__(story, id, content, next_state_ids)
@@ -92,8 +100,8 @@ class CutScene(State):
         return new_state
 
     def prep_state(self):
-        pass
-        #self.textstory = produceDialog(content=self.content)
+        self.textstory = produceDialog(content=self.content)
+        return
 
 class Story:
     def __init__(self):
@@ -122,7 +130,9 @@ class Story:
                 elif (state["TYPE"]=="PROMPT"):
                     new_state = Prompt.from_csv(self, int(state['ID']), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
 
+                new_state.prep_state()
                 self.states.append(new_state)
+                new_state = None
 
     def find_state(self, id):
         for state in self.states:

@@ -1,7 +1,5 @@
 import re
-
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from ConvStarters import *
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2')
@@ -39,7 +37,6 @@ def produceDialog(content):
         if len(str) <= 1:
             del finalText[-1]
             str = finalText[-1].rstrip()
-       # print("Loop "+str + " " + str[-1])
 
         if (str[-1] not in points):
             str_sp = re.findall('.*?[.!\?]', str)
@@ -50,5 +47,4 @@ def produceDialog(content):
     returnText = "\n".join(finalText)
     return returnText
 
-produceDialog(townMan())
 
