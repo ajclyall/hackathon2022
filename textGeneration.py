@@ -1,7 +1,6 @@
 import re
 
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
-from ConvStarters import *
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 model = GPT2LMHeadModel.from_pretrained('gpt2')
@@ -24,6 +23,7 @@ def produceDialog(content):
     text_filter = text.replace("  ", " ")
     text_split = text_filter.split('\n')
 
+    #print('text_split:',text_split)
 
     finalText = []
 
@@ -34,6 +34,7 @@ def produceDialog(content):
     filtered = False
 
     while (filtered == False):
+        #print("final: ", finalText)
 
         str = finalText[-1].rstrip()
         if len(str) <= 1:

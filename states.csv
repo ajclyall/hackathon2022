@@ -3,7 +3,8 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 1,CUTSCENE,FALSE,0+You are looking out the dirty little window in your flat over the sprawling metropolis of Glasgow. Plumes of smoke billow from the vapes of the passerbys. Your phone rings in your pocket.,2
 2,PROMPT,FALSE,Answer the call?+Yes+No,3+4
 3,CUTSCENE,TRUE,"100+Hello, I am George. I am calling you to let you know you have an inheritance waiting for you in the south of France. If you have any questions",5
-4,CUTSCENE,FALSE,0+YOU DIED,5
+4,CUTSCENE,FALSE,0+YOU DIED.,5
+5,CUTSCENE,FALSE,0+test,5
 412323,CUTSCENE,TRUE,"150+Hi my name is James. I know you inherited the castle \n Have you heard the infinite horror stories about the bloody viscount \n He used to live in the castle on the hill, \n and he massacred hundreds of towns people. \n",3
 512323,CUTSCENE,TRUE,"50+Good afternoon, what are you looking for today?\n I've got bread, muffins",4
 232323,CUTSCENE,TRUE,"100+Hello, I am George \n I am calling you to let you know you have an inheritance waiting for you in the south of France. \n If you have any questions",5
