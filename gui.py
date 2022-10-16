@@ -37,6 +37,14 @@ class GUI(tk.Frame):
 
         self.canvas.pack(pady=200)
 
+    def set_image_mode(self):
+        self.image_margin = 515
+        self.screen_width = 35
+
+    def set_normal_mode(self):
+        self.image_margin = 0
+        self.screen_width = 80
+
     def get_cursor_canvaspos(self):
         return (self.cursorpos[0]*self.characterwidth+self.margin+self.image_margin,self.cursorpos[1]*self.lineheight)
 

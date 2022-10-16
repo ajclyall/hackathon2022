@@ -2,6 +2,7 @@ import csv
 from textGeneration import *
 import ai
 
+TURN_ON_TEXT_AI = False
 
 class State:
     def __init__(self, story, id, wipe, content, next_state_ids):
@@ -41,6 +42,8 @@ class Prompt(State):
         app.is_capturing = False
         answer = int(app.get_finished_input())
         next_state = self.story.find_state(self.next_state_ids[answer])
+        if next_state.wipe:
+            app.set_normal_mode()
         self.story.set_next_state(next_state)
         self.state_change_ready = True
 
@@ -48,8 +51,6 @@ class Prompt(State):
         new_state = Prompt(story, id, wipe, content, next_state_ids)
         return new_state
 
-    def prep_state(self):
-        pass
 
 class Image(State):
     def __init__(self, story, id, wipe, content, next_state_ids):
@@ -60,9 +61,9 @@ class Image(State):
             app.clear_canvas()
         app.clear_canvas()
         app.draw_image(self)
-        app.image_margin = 515
-        
+        self.set_image_mode()
         app.write_text(self.content[1])
+        #self.set_normal_mode()
 
     def is_state_done(self, app, keyevent):
         if keyevent.char != '':
@@ -72,6 +73,8 @@ class Image(State):
 
     def finish_state(self, app):
         next_state = self.story.find_state(self.next_state_ids[0])
+        if next_state.wipe:
+            app.set_normal_mode()
         self.story.set_next_state(next_state)
         self.state_change_ready = True
 
@@ -99,6 +102,8 @@ class CutScene(State):
 
     def finish_state(self, app):
         next_state = self.story.find_state(self.next_state_ids[0])
+        if next_state.wipe:
+            app.set_normal_mode()
         self.story.set_next_state(next_state)
         self.state_change_ready = True
 
@@ -108,8 +113,8 @@ class CutScene(State):
 
     def prep_state(self):
         if self.content[0] != '0':
-            #self.textstory = produceDialog(self.content)
-            pass
+            if TURN_ON_TEXT_AI:
+                self.textstory = produceDialog(self.content)
 
 class Story:
     def __init__(self):
@@ -132,15 +137,15 @@ class Story:
             for state in states:
                 if (state["TYPE"]=="CUTSCENE"):
                     new_state = CutScene.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
+                    new_state.prep_state()
                 elif (state["TYPE"]=="IMAGE"):
                     new_state = Image.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
                     ai.generate_image(new_state)
                 elif (state["TYPE"]=="PROMPT"):
                     new_state = Prompt.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
 
-                new_state.prep_state()
+                
                 self.states.append(new_state)
-                new_state = None
 
     def find_state(self, id):
         for state in self.states:
