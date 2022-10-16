@@ -1,16 +1,16 @@
 ID,TYPE,WIPE,CONTENT,NEXTSTATES
-0,CUTSCENE,TRUE,0+Press any key to continue...,39
+0,CUTSCENE,TRUE,0+Press any key to continue...,1
 1,CUTSCENE,FALSE,0+You are peering out the dirty little window in your flat over the sprawling metropolis of Glasgow. Plumes of thick smoke billow from the vapes of passerby's. You feel your phone ring in your pocket.,2
 2,PROMPT,FALSE,Answer the call?+Yes+No,3+4
-3,CUTSCENE,TRUE,"100+Hello, I am George. I am contacting you to inform you of a large inheritance waiting for you in the south of France. If you have any questions",5
-4,CUTSCENE,TRUE,"100+You get employed at JP Morgan. A long career follows. Unfortunately, ",8
+3,CUTSCENE,TRUE,"100+Hello, I am George. I am contacting you to inform you of a large inheritance waiting for you in the south of France. If you have any questions...",5
+4,CUTSCENE,TRUE,"100+You get employed at JP Morgan. A long career follows. Unfortunately,... ",8
 5,PROMPT,FALSE,What do you do?+Go to France+Remain in Glasgow,6+4
 6,IMAGE,TRUE,"darkness shadowy scary beady eyes watching+Beaded sweat trickles down my shivering back as I force my tired eyes open. Although dark, the view has a hazy familiarity... I'm not alone. Pin-prick holes in the colourless void let disconcerting light creep through. These thousand glossy eyes blink in unison, and I cherish this brief instant of isolation.",7
 7,IMAGE,TRUE,"economy plane seat baby loud french+The rattling turbulence wakes you from your disturbed slumber. There is a baby crying in your left ear. You are in the back of a plane on the way to France. Thank god I'm always there.",9
-8,CUTSCENE,FALSE,"100+You lose touch with most of your family and die desperately alone. This will be the last year of your life. You tell others that",8
+8,CUTSCENE,FALSE,"100+You lose touch with most of your family and die desperately alone. This will be the last year of your life. You tell others that...",8
 9,CUTSCENE,TRUE,"0+You get picked up at the airport and driven to the bottom of a hill in punishing silence. A small winding path leads up the incline, and the man gestures to it and speaks in French. ",10
 10,IMAGE,TRUE,scary path woods hill mountain dark+As you begin your ascent up the hill the man attempts to converse in broken English.,11
-11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,",12
+11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,...",12
 12,CUTSCENE,TRUE,"0+As you approach the summit, the man points to his right and proudly exclaims, 'Voila! Inheritance!'.",13
 13,IMAGE,TRUE,dark scary medieval elegant castle+The Castle,52
 14,IMAGE,TRUE,"old large stone entrance hallway elegant wood medieval, candles",15
@@ -18,9 +18,9 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 16,IMAGE,TRUE,french town small old medieval+You arrive in the town and take in the sights.,17
 17,PROMPT,FALSE,What would you like to do next?+Speak to a man on the street+Go into the town bakery+Go back to the castle,18+20+14
 18,IMAGE,TRUE,"person, towns man, village, medieval art, short, shepherd+",19
-19,CUTSCENE,FALSE,"150+Hi my name is James. I know you inherited the castle. Have you heard the infinite horror stories about the bloody viscount. He used to live in the castle on the hill, and he massacred hundreds of towns people.",17
+19,CUTSCENE,FALSE,"150+Hi my name is James. I know you inherited the castle. Have you heard the infinite horror stories about the bloody viscount. He used to live in the castle on the hill, and he massacred hundreds of towns people...",17
 20,IMAGE,TRUE,"person, baker, medieval art, bakery, fat+",21
-21,CUTSCENE,FALSE,"70+Good afternoon, what are you looking for today? I've got bread, muffins",17
+21,CUTSCENE,FALSE,"70+Good afternoon, what are you looking for today? I've got bread, muffins...",17
 22,PROMPT,FALSE,Where should we go?+Kitchen+Bedroom+Dungeon+Attic+Leave the castle,23+25+26+24+14
 23,IMAGE,TRUE,"old large stone kitchen, leaking celling, puddle of water on the floor, dark, elegant, wooden and stone, knives, hanging dry food, big table in the middle, dead flowers, medieval, candles+Kitchen",27
 24,IMAGE,TRUE,medieval castle attic dusty scary dark stone+Attic,28
@@ -32,11 +32,11 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 30,IMAGE,TRUE,"orthodox large church sinister intimidating, medieval art+The Hidden Church",31
 31,IMAGE,TRUE,"orthodox stained glass windows, medieval art+The Hidden Church",32
 32,IMAGE,TRUE,"orthodox scary priest in church, medieval art+The Hidden Church",33
-33,CUTSCENE,FALSE,"100+Beaded sweat trickles down my shivering back as I force my tired eyes open. The vast atrium of the church instills a sense of dread and ",34
+33,CUTSCENE,FALSE,"100+Beaded sweat trickles down my shivering back as I force my tired eyes open. The vast atrium of the church instills a sense of dread and... ",34
 34,IMAGE,TRUE,"group of priests in circle, medieval art+",35
-35,CUTSCENE,FALSE,"100+Following the wail of a distant chant, you see a group of priests performing what you can only assume is a ritual. They seem to be ",36
+35,CUTSCENE,FALSE,"100+Following the wail of a distant chant, you see a group of priests performing what you can only assume is a ritual. They seem to be... ",36
 36,IMAGE,TRUE,"group of evil goblin priests, on fire, photorealistic+Realising your approach, the cult suddenly transform into a syndicate of vile creatures!",37
-37,CUTSCENE,FALSE,"50+You think the group now resembles a circle of hell, populated by otherworldly grotesque demons. Their lumbering limbs struggle towards you and ",38
+37,CUTSCENE,FALSE,"50+You think the group now resembles a circle of hell, populated by otherworldly grotesque demons. Their lumbering limbs struggle towards you and... ",38
 38,IMAGE,TRUE,"fire evil goblin priests attack the camera+ENCOUNTER",39
 39,PROMPT,FALSE,"They draw closer, do you?+Attempt to flee+Stay and fight+Lay down, surrender yourself to the soil",40+41+50
 40,CUTSCENE,TRUE,"0+Like an owl, your head swiftly swivels back towards the way you came, only for these futile hopes to be dashed by a wall of flames, engulfing the escape you now long for",39
@@ -51,4 +51,4 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 49,CUTSCENE,FALSE,"0+As you retire to your new chambers, you wonder what on earth your dead relative did for work", 0
 50,IMAGE,TRUE,"closed eyes, sleeping man+You close your eyes",51
 51,CUTSCENE,TRUE,"0+You awake in a clinical insane asylum, wondering whether any of that was ever real, or was it generated by your mind?",0
-52,CUTSCENE,FALSE,"100+The castle ahead appears ",14
+52,CUTSCENE,FALSE,"100+The castle ahead appears... ",14
