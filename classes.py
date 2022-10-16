@@ -2,7 +2,7 @@ import csv
 from textGeneration import *
 import ai
 
-TURN_ON_TEXT_AI = False
+TURN_ON_TEXT_AI = True
 
 class State:
     def __init__(self, story, id, wipe, content, next_state_ids):
