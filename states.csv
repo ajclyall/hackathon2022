@@ -10,7 +10,7 @@ ID,TYPE,WIPE,CONTENT,NEXTSTATES
 8,CUTSCENE,FALSE,100+You lose most of your family and die alone. This will be the last year of your life. You tell others that,8
 9,CUTSCENE,TRUE,"0+You get picked up at the airport and driven to the bottom of a hill in silence. You see a small winding path leading up the hill. And the man points at it and speaks in french. ",10
 10,IMAGE,TRUE,scary path woods hill mountain dark+As you start walking up the hill the man begins to speak in broken french.,11
-11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,",11
+11,CUTSCENE,FALSE,"100+""As child I come here all the time. People tell me no, but I am here anyway"". ""They say haunted,",12
+12,CUTSCENE,TRUE,0+As you approch the top of the hill the man points to the right and says voila: inheritance.,12
 412323,CUTSCENE,TRUE,"150+Hi my name is James. I know you inherited the castle \n Have you heard the infinite horror stories about the bloody viscount \n He used to live in the castle on the hill, \n and he massacred hundreds of towns people. \n",3
 512323,CUTSCENE,TRUE,"50+Good afternoon, what are you looking for today?\n I've got bread, muffins",4
-232323,CUTSCENE,TRUE,"100+Hello, I am George \n I am calling you to let you know you have an inheritance waiting for you in the south of France. \n If you have any questions",5

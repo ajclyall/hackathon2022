@@ -61,9 +61,8 @@ class Image(State):
             app.clear_canvas()
         app.clear_canvas()
         app.draw_image(self)
-        self.set_image_mode()
-        app.write_text(self.content[1])
-        #self.set_normal_mode()
+        app.set_image_mode()
+        app.write_text(self.content[1]+'\n\n')
 
     def is_state_done(self, app, keyevent):
         if keyevent.char != '':
