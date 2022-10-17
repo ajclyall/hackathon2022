@@ -1,6 +1,6 @@
 import csv
 from textGeneration import *
-import ai
+#import ai
 
 TURN_ON_TEXT_AI = True
 
@@ -148,7 +148,7 @@ class Story:
                     new_state.prep_state()
                 elif (state["TYPE"]=="IMAGE"):
                     new_state = Image.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
-                    ai.generate_image(new_state)
+                    #ai.generate_image(new_state)
                 elif (state["TYPE"]=="PROMPT"):
                     new_state = Prompt.from_csv(self, int(state['ID']), (state['WIPE']=='TRUE'), state['CONTENT'].split('+'), [int(i) for i in state['NEXTSTATES'].split('+')])
 
