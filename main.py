@@ -33,7 +33,7 @@ if __name__=='__main__':
     main_story.read_states()
 
     root = tk.Tk()
-    #root.attributes("-fullscreen", True) 
+    root.attributes("-fullscreen", True) 
     root.config(bg='black')
     app = GUI(master=root)
     root.bind('<KeyPress>',key_pressed)
